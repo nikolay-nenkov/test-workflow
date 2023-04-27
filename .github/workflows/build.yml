@@ -21,17 +21,17 @@ jobs:
   job_1:
     runs-on: windows-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+     - name: Checkout
+       uses: actions/checkout@v3 
 
-      - name: Setup node
-       uses: actions/setup-node@v3
-       with:
-         node-version: 16.13.x
-         cache: npm
+     - name: Setup node
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16.13.x
+        cache: npm 
 
-      - name: Install
-        run: npm ci
+     - name: Install
+       run: npm ci
 
-      - name: Build
-        run: npm run build
+     - name: Build
+       run: npm run build
