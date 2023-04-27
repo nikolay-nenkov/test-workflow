@@ -18,8 +18,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
- job_1:
-    name: Build stuff
+  build-stuff:
     runs-on: windows-latest
     steps:
      - name: Checkout
