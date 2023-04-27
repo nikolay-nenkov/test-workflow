@@ -21,23 +21,29 @@ jobs:
   build_stuff:
     runs-on: windows-latest
     steps:
-     - name: Checkout
-       uses: actions/checkout@v3 
+      - name: Call Azure
+        uses: Azure/pipelines@v1
+        with:
+            azure-devops-project-url: https://dev.azure.com/prgs-devtools-test/desktop-mobile-components
+            azure-pipeline-name: 'test-ci'
+            azure-devops-token: ${{ secrets.AZURE_DEVOPS_TOKEN }}
+    #  - name: Checkout
+    #    uses: actions/checkout@v3 
 
-     - name: Setup node
-       uses: actions/setup-node@v3
-       with:
-        node-version: 16.13.x
-        cache: npm 
+    #  - name: Setup node
+    #    uses: actions/setup-node@v3
+    #    with:
+    #     node-version: 16.13.x
+    #     cache: npm 
 
-     - name: Install
-       run: npm ci
+    #  - name: Install
+    #    run: npm ci
 
-     - name: Build
-       run: npm run build
+    #  - name: Build
+    #    run: npm run build
 
-     - name: Upload Artifact
-       uses: actions/upload-artifact@v3
-       with:
-          name: build-output
-          path: out
+    #  - name: Upload Artifact
+    #    uses: actions/upload-artifact@v3
+    #    with:
+    #       name: build-output
+    #       path: out
