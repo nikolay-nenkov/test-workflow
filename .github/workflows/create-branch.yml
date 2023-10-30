@@ -2,13 +2,20 @@ name: Create branch
 run-name: Create branch
 on:
   workflow_dispatch:
+    inputs: 
+      name:
+        type: string
+        required: true
+      content:
+        type: string
+        required: true
 
 permissions:
   contents: write
   pull-requests: read
 
 concurrency:
-  group: '${{ github.workflow }}'
+  group: '${{ github.workflow }} ${{ inputs.name }}'
   cancel-in-progress: true
 
 jobs:
@@ -19,7 +26,12 @@ jobs:
        uses: actions/checkout@v3 
 
      - name: Create branch
-       run: git checkout -b test-branch
-
-     - name: push branch
-       run: git push -u origin test-branch
+       run: |
+          git checkout -b new-file-%name%
+          echo %content% > %name%.md
+          git add %name%.md
+          git commit -m "Added new file"
+          git push -u origin new-file-%name%
+       env:
+          name: ${{ inputs.name }}
+          content: ${{ inputs.content }}
