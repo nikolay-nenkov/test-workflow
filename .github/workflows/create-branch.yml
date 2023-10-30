@@ -1,0 +1,25 @@
+name: Create branch
+run-name: Create branch
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: '${{ github.workflow }}'
+  cancel-in-progress: true
+
+jobs:
+  build_stuff:
+    runs-on: windows-latest
+    steps:
+     - name: Checkout
+       uses: actions/checkout@v3 
+
+     - name: Create branch
+       run: git checkout -b test-branch
+
+     - name: push branch
+       run: git push -u origin test-branch
