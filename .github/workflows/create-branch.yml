@@ -25,6 +25,11 @@ jobs:
      - name: Checkout
        uses: actions/checkout@v3 
 
+     - name: configure git
+       run: |
+            git config --global user.email "filebot@example.com"
+            git config --global user.name "File Bot"
+
      - name: Create branch
        run: |
           git checkout -b new-file-%name%
