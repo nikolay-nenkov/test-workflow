@@ -1,6 +1,8 @@
 name: Create branch
 run-name: Create branch
 on:
+  repository_dispatch:
+    types: [new-file]
   workflow_dispatch:
     inputs: 
       name:
@@ -38,8 +40,8 @@ jobs:
           git commit -m "Added new file"
           git push -u origin "new-file-$($env:name)"
        env:
-          name: ${{ inputs.name }}
-          content: ${{ inputs.content }}
+          name: ${{ github.event.client_payload.name || inputs.name }}
+          content: ${{ github.event.client_payload.content || inputs.content }}
 
      - name: Create pull request
        run: gh pr create --fill
