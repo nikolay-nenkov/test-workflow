@@ -40,3 +40,8 @@ jobs:
        env:
           name: ${{ inputs.name }}
           content: ${{ inputs.content }}
+
+     - name: Create pull request
+       run: gh pr create --fill
+       env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
