@@ -32,11 +32,11 @@ jobs:
 
      - name: Create branch
        run: |
-          git checkout -b new-file-%name%
-          echo %content% > %name%.md
-          git add %name%.md
+          git checkout -b "new-file-$($env:name)"
+          echo $env:content > "$($env:name).md"
+          git add "$($env:name).md"
           git commit -m "Added new file"
-          git push -u origin new-file-%name%
+          git push -u origin "new-file-$($env:name)"
        env:
           name: ${{ inputs.name }}
           content: ${{ inputs.content }}
