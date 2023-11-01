@@ -1,5 +1,4 @@
 name: Create branch
-run-name: Create branch Run
 on:
   repository_dispatch:
     types: [new-file]
@@ -11,6 +10,8 @@ on:
       content:
         type: string
         required: true
+
+run-name: Create branch ${{ github.event.client_payload.name || inputs.name }}
 
 permissions:
   contents: write
