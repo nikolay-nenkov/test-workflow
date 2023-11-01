@@ -1,5 +1,5 @@
 name: Create branch
-run-name: Create branch
+run-name: Create branch Run
 on:
   repository_dispatch:
     types: [new-file]
